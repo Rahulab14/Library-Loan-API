@@ -7,24 +7,35 @@ import com.parkease.library.service.LoanService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/loans")
 @RequiredArgsConstructor
 public class LoanController {
 
-    private final LoanService loanService;
+```
+private final LoanService loanService;
 
-    @PostMapping
-    public Loan borrowBook(
-            @RequestBody LoanRequest request) {
+@PostMapping
+public Loan borrowBook(
+        @RequestBody LoanRequest request) {
 
-        return loanService.borrowBook(request);
-    }
+    return loanService.borrowBook(request);
+}
 
-    @PutMapping("/{id}/return")
-    public ReturnResponse returnBook(
-            @PathVariable Long id) {
+@PutMapping("/{id}/return")
+public ReturnResponse returnBook(
+        @PathVariable Long id) {
 
-        return loanService.returnBook(id);
-    }
+    return loanService.returnBook(id);
+}
+
+@GetMapping("/overdue")
+public List<Loan> getOverdueLoans() {
+
+    return loanService.getOverdueLoans();
+}
+```
+
 }
